@@ -1,8 +1,11 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -89,6 +92,20 @@ public class TestParkingSystem {
         String result = parkingLotSystem.findCar(carNum);
 
         assertEquals("Car XYZ987 is parked at Spot1", result);
+    }
+
+    @Test
+    public void testGetParkingTimestamp() {
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
+        ParkingLotAttendant parkingLotAttendant = new ParkingLotAttendant(parkingLotSystem);
+
+        String carNum = "XYZ987";
+
+        parkingLotAttendant.parkCar(carNum);
+
+        LocalDateTime parkingTimestamp = parkingLotSystem.getParkingTimestamp(carNum);
+
+        assertNotNull(parkingTimestamp);
     }
 
 }
