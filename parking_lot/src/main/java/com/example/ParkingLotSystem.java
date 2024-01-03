@@ -1,5 +1,6 @@
 package com.example;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ public class ParkingLotSystem {
     private List<ParkingLotOwner> parkingLotOwnerList;
     private List<ParkingLotAttendant> parkingLotAttendantList;
     private Map<String, String> parkedCars;
+    private Map<String, LocalDateTime> parkingTimestamps;
 
     public ParkingLotSystem() {
         this.curCapacity = 0;
@@ -21,6 +23,7 @@ public class ParkingLotSystem {
         this.parkingLotOwnerList = new ArrayList<>();
         this.parkingLotAttendantList = new ArrayList<>();
         this.parkedCars = new HashMap<>();
+        this.parkingTimestamps = new HashMap<>();
     }
 
     public String parkCar(String carNum) {
@@ -30,6 +33,7 @@ public class ParkingLotSystem {
         curCapacity++;
         String parkingSpot = "Spot" + curCapacity;
         parkedCars.put(carNum, parkingSpot);
+        parkingTimestamps.put(carNum, LocalDateTime.now());
         return "parked car " + carNum;
     }
 
@@ -39,6 +43,7 @@ public class ParkingLotSystem {
         }
         curCapacity--;
         String parkingSpot = parkedCars.remove(carNum);
+        parkingTimestamps.remove(carNum);
         notifyOwner();
         return "unparked car " + carNum;
     }
@@ -87,6 +92,10 @@ public class ParkingLotSystem {
         } else {
             return "Car " + carNum + " not found in the parking lot.";
         }
+    }
+
+    public LocalDateTime getParkingTimestamp(String carNum) {
+        return parkingTimestamps.get(carNum);
     }
 
 }
