@@ -2,10 +2,13 @@ package com.example;
 
 import java.util.List;
 
+import com.ParkingLotOwner;
+
 public class ParkingLotSystem {
     private static final int MAX_CAPACITY = 100;
     int curCapacity;
     private List<SecurityStaff> securityStaffList;
+    private List<ParkingLotOwner> parkingLotOwnerList;
 
     public ParkingLotSystem() {
         this.curCapacity = 0;
@@ -37,6 +40,14 @@ public class ParkingLotSystem {
 
     public void addSecurityStaff(SecurityStaff securityStaff) {
         securityStaffList.add(securityStaff);
+    }
+
+    public void notifyOwner() {
+        if (!isParkingFull()) {
+            for (ParkingLotOwner owner : parkingLotOwnerList) {
+                owner.notifyParkingLotHasSpace();
+            }
+        }
     }
 
 }
