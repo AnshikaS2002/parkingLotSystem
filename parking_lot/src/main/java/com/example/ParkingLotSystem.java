@@ -17,4 +17,9 @@ public class ParkingLotSystem {
         curCapacity--;
         return "unparked car " + carNum;
     }
+
+    public Boolean isParkingFull() {
+        return null;
+    }
+
 }

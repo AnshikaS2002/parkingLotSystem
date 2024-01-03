@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,5 +18,15 @@ public class TestParkingSystem {
         ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
         String carNum = "ABC1234";
         assertEquals("unparked car " + carNum, parkingLotSystem.unparkCar(carNum));
+    }
+
+    @Test
+    public void testAllocatingSlotWithMaximumCapacity() {
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
+        int maxCapacity = 100;
+        for (int i = 1; i <= maxCapacity; i++) {
+            parkingLotSystem.parkCar("i");
+        }
+        assertEquals(true, parkingLotSystem.isParkingFull());
     }
 }
