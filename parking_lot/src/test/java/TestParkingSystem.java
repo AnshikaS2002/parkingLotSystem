@@ -77,4 +77,18 @@ public class TestParkingSystem {
         verify(parkingLotSystemMock, times(1)).parkCarForOwner(carNum);
     }
 
+    @Test
+    public void testFindCar() {
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
+        ParkingLotAttendant parkingLotAttendant = new ParkingLotAttendant(parkingLotSystem);
+
+        String carNum = "XYZ987";
+
+        parkingLotAttendant.parkCar(carNum);
+
+        String result = parkingLotSystem.findCar(carNum);
+
+        assertEquals("Car XYZ987 is parked at Spot1", result);
+    }
+
 }

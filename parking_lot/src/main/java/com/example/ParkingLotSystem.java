@@ -70,4 +70,8 @@ public class ParkingLotSystem {
         return "Attendant parked car " + carNum;
     }
 
+    public String findCar(String carNum) {
+        return null;
+    }
+
 }
