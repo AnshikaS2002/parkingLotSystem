@@ -19,7 +19,9 @@ public class ParkingLotSystem {
     }
 
     public Boolean isParkingFull() {
-        return null;
+        if (this.curCapacity >= MAX_CAPACITY)
+            return true;
+        return false;
     }
 
 }
