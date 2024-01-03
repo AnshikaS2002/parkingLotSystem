@@ -12,4 +12,8 @@ public class ParkingLotSystem {
         curCapacity++;
         return "parked car " + carNum;
     }
+
+    public String unparkCar(String carNum) {
+        return null;
+    }
 }

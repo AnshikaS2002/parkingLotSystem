@@ -11,4 +11,11 @@ public class TestParkingSystem {
         String carNum = "ABC1300";
         assertEquals("parked car " + carNum, parkingLotSystem.parkCar(carNum));
     }
+
+    @Test
+    public void testUnparkingFunctionality() {
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
+        String carNum = "ABC1234";
+        assertEquals("unparked car " + carNum, parkingLotSystem.unparkCar(carNum));
+    }
 }
