@@ -14,6 +14,7 @@ public class ParkingLotSystem {
     }
 
     public String unparkCar(String carNum) {
-        return null;
+        curCapacity--;
+        return "unparked car " + carNum;
     }
 }
