@@ -2,6 +2,8 @@ package com.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import com.ParkingLotOwner;
 
@@ -11,23 +13,32 @@ public class ParkingLotSystem {
     private List<SecurityStaff> securityStaffList;
     private List<ParkingLotOwner> parkingLotOwnerList;
     private List<ParkingLotAttendant> parkingLotAttendantList;
+    private Map<String, String> parkedCars;
 
     public ParkingLotSystem() {
         this.curCapacity = 0;
         this.securityStaffList = new ArrayList<>();
         this.parkingLotOwnerList = new ArrayList<>();
         this.parkingLotAttendantList = new ArrayList<>();
-        parkingLotOwnerList.add(new ParkingLotOwner("abc"));
+        this.parkedCars = new HashMap<>();
     }
 
     public String parkCar(String carNum) {
+        if (isParkingFull()) {
+            return "Parking is full. Cannot park car.";
+        }
         curCapacity++;
-        // notifyOwner();
+        String parkingSpot = "Spot" + curCapacity;
+        parkedCars.put(carNum, parkingSpot);
         return "parked car " + carNum;
     }
 
     public String unparkCar(String carNum) {
+        if (!parkedCars.containsKey(carNum)) {
+            return "Car " + carNum + " not found in the parking lot.";
+        }
         curCapacity--;
+        String parkingSpot = parkedCars.remove(carNum);
         notifyOwner();
         return "unparked car " + carNum;
     }
@@ -71,7 +82,11 @@ public class ParkingLotSystem {
     }
 
     public String findCar(String carNum) {
-        return null;
+        if (parkedCars.containsKey(carNum)) {
+            return "Car " + carNum + " is parked at " + parkedCars.get(carNum);
+        } else {
+            return "Car " + carNum + " not found in the parking lot.";
+        }
     }
 
 }
